@@ -113,7 +113,6 @@ input.error {
 
 .password-input-container input {
     padding-right: 40px;
-    /* Make space for the toggle button */
 }
 
 .toggle-password {
