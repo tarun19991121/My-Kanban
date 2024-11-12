@@ -1,0 +1,61 @@
+.external-div {
+    height: 100vh;
+    margin: 0;
+    background-color: gray;
+}
+
+.next-inner {
+    margin-top: 20px;
+    height: 400px;
+    width: 500px;
+    background-color: #c1c1c1;
+    padding: 50px;
+    border-radius: 50px;
+    border: 2px solid gray;
+    box-shadow: 20px 20px 60px #00000080, inset -20px -20px 60px #ffffffba;
+}
+
+.inner {
+    margin-top: 40px;
+}
+
+.heading {
+    color: rgb(70, 29, 132);
+}
+
+.external-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#log-but {
+    padding: 10px;
+    padding-left: 45px;
+    padding-right: 45px;
+
+    margin-left: 128px;
+    margin-top: 10px;
+}
+
+.form-all {
+    margin-top: 40px;
+}
+
+.inner {
+    margin-left: 30px;
+}
+
+.form-control {
+    background-color: rgb(78, 38, 138);
+    color: white;
+}
+
+.form-control::placeholder {
+    color: white;
+}
+
+.form-3 {
+    margin-top: 25px;
+}

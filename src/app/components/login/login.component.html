@@ -1,1 +1,55 @@
-<p>login works!</p>
+<div class="external-div">
+    <div class="inner">
+      <div class="inner-1">
+        <h3 class="text-t">Welcome back to <span class="heading">MY KANBAN</span></h3>
+      </div>
+      <div class="inner-2">
+        <p class="text-34">Take control of your to-do list. Sign in to access your tasks and
+          <br>
+          visualize your progress.
+        </p>
+      </div>
+    </div>
+    
+    <div class="next-inner">
+      <div class="form">
+        <form action="/action_page.php" #form="ngForm" >
+          <div class="form-all">
+            <div class="form-in1">
+              <div class="mb-3 mt-3">
+                <label for="uname" class="form-label">Username:</label>
+                <input type="text" name="username" #username="ngModel" class="form-control" [(ngModel)]="userobj.username"
+                  id="uname" minlength="5" placeholder="Enter username" required>
+                <div class="text-danger">
+                  @if((username.touched || username.dirty) && username.errors?.['required']){
+                  <span>This is required</span>
+                  } @else if ((username.touched || username.dirty) &&username.errors?.['minlength']) {
+                  <span>Minimum 5 chars required!!</span>
+                  }
+                </div>
+              </div>
+            </div>
+
+            <div class="form-in2">
+              <div class="mb-3">
+                <label for="pwd" class="form-label">Password:</label>
+                <input type="password" name="password" #name="ngModel" class="form-control" [(ngModel)]="userobj.password"
+                  id="pwd" minlength="5" placeholder="Enter password" required>
+                <div class="text-danger">
+                  @if((name.touched || name.dirty) && name.errors?.['required']){
+                  <span>This is required</span>
+                  } @else if ((name.touched || name.dirty) &&name.errors?.['minlength']) {
+                  <span>Minimum 5 chars required!!</span>
+                  }
+                </div>
+              </div>
+            </div>
+  
+            <div class="form-3">
+              <button type="submit" class="btn btn-success" [disabled]="form.invalid" id="log-but" (click)="getusername()">Log in</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
