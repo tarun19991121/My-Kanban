@@ -28,8 +28,6 @@ export class RegistrationComponent implements OnInit {
     }, {
       validators: this.passwordMatchValidator
     });
-
-    this.togglePasswordFields(false);
   }
 
   sendOtp() {
@@ -41,24 +39,19 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
-  verifyOtp() {
+  onSubmit() {
     if (this.otp?.value === '123456') { // for example only
       this.otpVerified = true;
-      this.togglePasswordFields(true);
       console.log('OTP verified successfully');
+
+      if (this.registrationForm.valid && this.passwordsMatch()) {
+        console.log(this.registrationForm.value);
+      } else {
+        this.markFormGroupTouched(this.registrationForm);
+      }
     } else {
       console.log('Invalid OTP');
       this.otp?.setErrors({ invalidOtp: true });
-    }
-  }
-
-  togglePasswordFields(show: boolean) {
-    if (show) {
-      this.registrationForm.get('password')?.enable();
-      this.registrationForm.get('confirmPassword')?.enable();
-    } else {
-      this.registrationForm.get('password')?.disable();
-      this.registrationForm.get('confirmPassword')?.disable();
     }
   }
 
@@ -79,14 +72,6 @@ export class RegistrationComponent implements OnInit {
       return { passwordMismatch: true };
     }
     return null;
-  }
-
-  onSubmit() {
-    if (this.registrationForm.valid && this.otpVerified) {
-      console.log(this.registrationForm.value);
-    } else {
-      this.markFormGroupTouched(this.registrationForm);
-    }
   }
 
   private markFormGroupTouched(formGroup: FormGroup) {

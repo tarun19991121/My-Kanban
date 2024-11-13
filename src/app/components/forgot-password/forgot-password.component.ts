@@ -13,44 +13,50 @@ export class ForgotPasswordComponent {
   email: string = '';
   otp: string = '';
   otpSent: boolean = false;
-  showSetPassword: boolean = false;
-  newPassword = '';
-  confirmPassword = '';
-  correctOtp = '1234';
+  newPassword: string = '';
+  confirmPassword: string = '';
+  errorMessage: string = '';
+  correctOtp: string = '1234';
 
   constructor(private router: Router) { }
 
   sendOtp() {
-    if (this.email) {
-      this.otpSent = true;
-    } else {
-      alert('Please enter your email');
+    if (!this.email) {
+      this.errorMessage = 'Please enter your email';
+      return;
     }
-  }
 
-  verifyOtp() {
-    if (this.otp === this.correctOtp) {
-      this.showSetPassword = true;
-    } else {
-      alert('Invalid OTP. Please try again.');
-    }
-  }
-
-  onNewPasswordInput(event: Event) {
-    const input = event.target as HTMLInputElement;
-    this.newPassword = input.value;
-  }
-
-  onConfirmPasswordInput(event: Event) {
-    const input = event.target as HTMLInputElement;
-    this.confirmPassword = input.value;
+    // API for sending OTP
+    this.otpSent = true;
+    this.errorMessage = '';
   }
 
   onSubmit() {
-    if (this.newPassword === this.confirmPassword) {
-      console.log('Password reset confirmed');
-    } else {
-      console.log('Passwords do not match');
+    this.errorMessage = '';
+
+    if (this.otp !== this.correctOtp) {
+      this.errorMessage = 'Invalid OTP. Please try again.';
+      return;
     }
+
+    if (!this.newPassword || !this.confirmPassword) {
+      this.errorMessage = 'Please enter both passwords';
+      return;
+    }
+
+    if (this.newPassword !== this.confirmPassword) {
+      this.errorMessage = 'Passwords do not match';
+      return;
+    }
+
+    if (this.newPassword.length < 8) {
+      this.errorMessage = 'Password must be at least 8 characters long';
+      return;
+    }
+
+    // Call API to reset password
+    console.log('Password reset successful');
+    // Navigate to login or success page
+    // this.router.navigate(['/login']);
   }
 }
